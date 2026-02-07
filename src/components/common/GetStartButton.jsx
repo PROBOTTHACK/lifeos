@@ -10,7 +10,7 @@ function GetStartButton() {
         as="button"
         className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2"
       >
-        <span>Get Started</span>
+        <span className="font-medium tracking-[0.01em]">Get Started</span>
       </HoverBorderGradient>
     </div>
   );
