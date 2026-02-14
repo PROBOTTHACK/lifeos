@@ -1,7 +1,8 @@
 import React from 'react'
 import CoolGridBackground from '../components/ui/CoolGridBackground'
 import { Navbar } from '../components/Navbar'
-function Focus() {
+
+function Tasks() {
   return (
     <div className="relative min-h-screen bg-black text-white flex flex-col">
           <CoolGridBackground size={80} opacity={0.09} />
@@ -10,4 +11,4 @@ function Focus() {
   )
 }
 
-export default Focus
+export default Tasks
