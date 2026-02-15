@@ -36,6 +36,14 @@ const initialState = {
         mode: "work", // "work" | "break"
       },
 
+      subtodos: [
+        { id: "s1", text: "Subtask example", completed: false }
+      ],
+
+      resources: [
+        { id: "r1", type: "link", value: "https://example.com" }
+      ],
+
       deepMinutesLogged: 0,
     },
   ],
@@ -45,15 +53,49 @@ const initialState = {
 
 function taskReducer(state, action) {
   switch (action.type) {
-    case "SET_ACTIVE_TASK":
-      return state;
+    
+    case "ADD_TASK":
+      return {
+        ...state,
+        tasks: [...state.tasks, action.payload],
+      };
 
+    case "DELETE_TASK":
+      return {
+        ...state,
+        tasks: state.tasks.filter(
+          (task) => task.id !== action.payload
+        ),
+      };
+
+    case "SET_ACTIVE_TASK":
+      return {
+        ...state,
+        tasks: state.tasks.map((task) => ({
+          ...task,
+          status:
+            task.id === action.payload ? "active" :
+            task.status === "active" ? "todo" :
+            task.status,
+        })),
+      };
+    case "UPDATE_TASK":
+      return {
+        ...state,
+        tasks: state.tasks.map((task) =>
+          task.id === action.payload.id
+            ? action.payload
+            : task
+        ),
+      };
+      
     case "START_POMODORO":
       return state;
 
     case "PAUSE_POMODORO":
       return state;
 
+    
     default:
       return state;
   }
